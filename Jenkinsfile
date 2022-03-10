@@ -4,7 +4,9 @@ pipeline{
     stage('test'){
       steps{
       
-      sh 'echo "hello world" '
+      sh '#!/bin/bash
+echo "hello world"
+docker run --rm -i hadolint/hadolint < ./Dockerfile '
       
         
       }
