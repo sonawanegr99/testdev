@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'yum install git  &>/dev/null'
+                sh 'sudo yum install git'
                 sh 'git --version'
                 sh 'git clone https://github.com/awslabs/git-secrets.git'
                 sh 'make install'
