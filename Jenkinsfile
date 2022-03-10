@@ -3,8 +3,8 @@ pipeline{
   stages{
     stage('test'){
       steps{
-      
-      sh 'docker run --rm -i hadolint/hadolint < ./Dockerfile '
+      sh "chmod +x -R /home/ec2-user/traildev/shellscript.sh "
+      sh '/home/ec2-user/traildev/shellscript.sh'
       
         
       }
