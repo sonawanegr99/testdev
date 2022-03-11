@@ -6,7 +6,7 @@ pipeline {
             steps {
              sh 'git secret --version'
              sh 'pwd'
-             sh 'checkov --version'
+             sh './checkovscript.sh'
            }
 
 
