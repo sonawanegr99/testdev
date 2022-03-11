@@ -6,7 +6,7 @@ pipeline {
             steps {
              sh 'git secret --version'
              sh 'pwd'
-             sh './checkovscript.sh'
+             sh '/var/lib/jenkins/workspace/testingpipeling/checkovscript.sh'
            }
 
 
