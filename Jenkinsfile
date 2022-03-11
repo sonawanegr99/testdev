@@ -4,7 +4,7 @@ pipeline {
         stage('PreBuild') {
             
             steps {
-             sh 'git secrets --scan'
+             sh 'git secret --version'
             }
         }
     }
