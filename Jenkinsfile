@@ -5,6 +5,7 @@ pipeline {
             
             steps {
              sh 'git secret --version'
+             sh 'pwd'
             }
         }
     }
