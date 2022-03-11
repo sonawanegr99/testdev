@@ -1,19 +1,19 @@
-pipeline{
-  agent any
-  stages{
-    stage('test'){
-      steps{
-<<<<<<< HEAD
-     
-      sh '/home/ec2-user/traildev/scripts/shellscript.sh'
-=======
-      
-      sh '/home/ec2-user/traildev/scripts'
->>>>>>> f02b1a23b8beb2fa8badf0762da717aef4a33165
-      
-        
-      }
-      }
-     }
+
+   
+pipeline {
+    agent any
+    stages {
+        stage('PreBuild') {
+            
+            steps {
+             sh 'git secret --version'
+             sh 'pwd'
+             sh '/var/lib/jenkins/workspace/testingpipeling/checkovscript.sh'
+             sh '/var/lib/jenkins/workspace/testingpipeling/gitsecretscript.sh'
+           }
+
+
+          
+        }
     }
-	
+}
