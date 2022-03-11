@@ -6,8 +6,12 @@ pipeline {
             steps {
              sh 'git secret --version'
              sh 'pwd'
-             sh 'git secrets --scan-history'
+             sh 'checkov -f /var/lib/jenkins/workspace/testdevsecops/Dockerfile'
+           }
+
+
             }
+            
         }
     }
 }
