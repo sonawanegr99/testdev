@@ -6,7 +6,7 @@ pipeline {
             steps {
              sh 'git secret --version'
              sh 'pwd'
-             sh 'checkov -f /var/lib/jenkins/workspace/testingpipeling/Dockerfile'
+             sh 'checkov --version'
            }
 
 
