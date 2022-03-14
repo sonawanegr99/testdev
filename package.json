@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/eks-cicd-demo"
+    "url": "https://github.com/sonawanegr99/testdev.git"
   },
   "keywords": [
     "node"
   ],
-  "author": "Rakesh C",
+  "author": "Ganesh Sonawane",
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.3",
