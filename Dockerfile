@@ -1,36 +1,20 @@
-FROM debian:stretch-slim AS builder
+FROM node:14
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /usr/src/app
 
-RUN apt-get update \
- && apt-get install --no-install-recommends -y \
-    build-essential=12.3 \
-    libffi-dev=3.2.* \
-    libgmp-dev=2:6.1.* \
-    zlib1g-dev=1:1.2.* \
-    curl=7.52.* \
-    ca-certificates=* \
-    git=1:2.11.* \
-    netbase=5.4 \
- && curl -sSL https://get.haskellstack.org/ | sh \
- && rm -rf /var/lib/apt/lists/*
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-WORKDIR /opt/hadolint/
-COPY stack.yaml package.yaml /opt/hadolint/
-RUN stack --no-terminal --install-ghc test --only-dependencies
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
-COPY . /opt/hadolint
-RUN scripts/fetch_version.sh \
-  && stack install --flag hadolint:static
+# Bundle app source
+COPY . .
 
-FROM debian:stretch-slim AS debian-distro
-COPY --from=builder /root/.local/bin/hadolint /bin/
-CMD ["/bin/hadolint", "-"]
-
-FROM alpine:3 AS alpine-distro
-COPY --from=builder /root/.local/bin/hadolint /bin/
-CMD ["/bin/hadolint", "-"]
-
-FROM scratch
-COPY --from=builder /root/.local/bin/hadolint /bin/
-CMD ["/bin/hadolint", "-"]
+EXPOSE 3000
+HEALTHCHECK --interval=5s --timeout=3s CMD [ "node", "index.js" ]
+USER node
