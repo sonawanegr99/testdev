@@ -79,8 +79,8 @@ stage('eks check') {
   stage('eks deployment application') {
             steps {
                 
-               sh 'kubectl apply -f ./eks-files/deployment.yaml'
-               sh 'kubectl apply -f ./eks-files/service.yaml'
+               sh '/usr/bin/kubectl apply -f ./deployment.yaml'
+               sh '/usr/bin/kubectl apply -f ./service.yaml'
             }
         }
 	 
