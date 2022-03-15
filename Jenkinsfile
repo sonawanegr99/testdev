@@ -16,32 +16,6 @@ pipeline {
             }
         }
 
-     stage('PreBuid') {
-           steps {
-            sh 'pwd'
-            echo "git secret version"
-            sh '/usr/bin/git secret --version'
-            echo "checkov  version"
-            sh '~/.local/bin/checkov  --version'
-            echo "Hadolint version"
-            sh '/usr/bin/hadolint --version'
-            echo "Trivy version"
-            sh '/usr/local/bin/trivy --version'
-            
-            echo 'Security checks Started before Build '
-            
-            echo 'Checking for any secrets stored in the repo'
-            sh '/usr/local/bin/git-secrets --scan'
-            
-            echo 'Docker linting/vulnerability scan using hadolint'
-            sh 'docker run --rm -i hadolint/hadolint < ./Dockerfile'
-            
-            
-            
-            echo 'Security checks Ended before Build '
-            
-          }
-        }
          stage('Logging into AWS ECR') {
             steps {
                 script {
