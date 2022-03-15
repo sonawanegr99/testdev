@@ -24,7 +24,7 @@ spec:
         app: jenkins-devsecops
     spec:
       containers:
-        - image: 088585194665.dkr.ecr.ap-south-1.amazonaws.com/opensourcedevsecops:NodeApp
+        - image: 088585194665.dkr.ecr.ap-south-1.amazonaws.com/opensourcedevsecops:NodeApp1
           imagePullPolicy: Always
           name: jenkins-devsecops
           ports:
