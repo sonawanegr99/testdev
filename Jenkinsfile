@@ -36,8 +36,7 @@ pipeline {
             echo 'Docker linting/vulnerability scan using hadolint'
             sh 'docker run --rm -i hadolint/hadolint < ./Dockerfile'
             
-            echo 'Check the quality of the code using checkov'
-            sh '~/.local/bin/checkov -f Dockerfile'
+            
             
             echo 'Security checks Ended before Build '
             
