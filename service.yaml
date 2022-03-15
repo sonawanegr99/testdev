@@ -7,11 +7,11 @@ metadata:
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/component: backend
     app.kubernetes.io/managed-by: kubectl
-  name: jenkins-devsecops
-  namespace: jenkins-devsecops
+  name: eks-sample-app
+  namespace: eks-sample-app
 spec:
   selector:
-    app: jenkins-devsecops
+    app: eks-sample-app
   type: LoadBalancer
   ports:
    -  protocol: TCP
