@@ -4,7 +4,8 @@ pipeline {
         AWS_ACCOUNT_ID="088585194665"
         AWS_DEFAULT_REGION="ap-south-1" 
         IMAGE_REPO_NAME="opensourcedevsecops"
-        IMAGE_TAG="NodeApp"
+	AWS_CLUSTER_NAME="cicd-demo"
+        IMAGE_TAG="NodeApp1"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    
@@ -52,6 +53,38 @@ pipeline {
          }
         }
       }
+	
+stage('eks check') {
+            steps {
+                
+                echo "'export PATH=$PATH:$HOME/bin' >> ~/.bashrc"
+                sh 'exec bash'
+                echo 'Check kubectl version'
+                sh 'kubectl version --short --client'
+            }
+        }
+
+     stage('eks login') {
+            steps {
+                
+                echo "eks login ..."
+                sh 'aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $AWS_CLUSTER_NAME'
+                sh 'kubectl config view --minify'
+                echo "check kubectl access"
+                sh 'kubectl get svc'
+                echo "EKS login Completed"
+            }
+        }
+
+  stage('eks deployment application') {
+            steps {
+                
+               sh 'kubectl apply -f ./eks-files/deployment.yaml'
+               sh 'kubectl apply -f ./eks-files/service.yaml'
+            }
+        }
+	 
+	 
     }
 }
 
