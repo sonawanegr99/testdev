@@ -4,8 +4,8 @@ pipeline {
         AWS_ACCOUNT_ID="088585194665"
         AWS_DEFAULT_REGION="ap-south-1" 
         IMAGE_REPO_NAME="opensourcedevsecops"
-	AWS_CLUSTER_NAME="cicd-demo"
-        IMAGE_TAG="NodeApp2"
+	AWS_CLUSTER_NAME="Devsecopcluster"
+        IMAGE_TAG="NodeApp3"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    
